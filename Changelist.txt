@@ -1,3 +1,6 @@
+1.0.1:
+- Added app icon
+
 1.0.0:
 - Initial release
 - Ten configurable CC slots, tap to cycle, LED shows value and blinks the slot number
