@@ -23,7 +23,13 @@ Default slots: CC 1 (Modulation), 7 (Volume), 74 (Cutoff), 71 (Resonance), 73 (A
 ./build_app.sh debug
 ```
 
-Requires Xcode 15 or later (Swift 5.9, macOS 13 SDK). No dependencies. The app is ad-hoc signed, so on first launch you may need to allow it under System Settings → Privacy & Security.
+Requires Xcode 15 or later (Swift 5.9, macOS 13 SDK). No dependencies. Local builds are ad-hoc signed, so on first launch you may need to allow the app under System Settings → Privacy & Security. Builds from the [Releases](https://github.com/FigBug/Knurl/releases) page are Developer ID signed and notarized.
+
+## Releasing
+
+Every push runs `ci/build.sh` on GitHub Actions, which signs and notarizes the app when the repository secrets are set and uploads the zip as a build artifact. To cut a release: bump `VERSION`, add a matching entry to `Changelist.txt`, commit, then run `./tag.sh`. The tag triggers the release workflow, which builds, notarizes and publishes a GitHub release with the changelog entry as notes.
+
+Secrets used by the workflows: `APPLICATION` (base64 Developer ID Application .p12), `P12_PASSWORD`, `APPLE_USER` and `APPLE_PASS` (Apple ID and app-specific password for notarytool). Without them the build still succeeds but produces an ad-hoc signed app.
 
 ## Notes
 

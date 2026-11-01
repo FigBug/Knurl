@@ -1,0 +1,4 @@
+1.0.0:
+- Initial release
+- Ten configurable CC slots, tap to cycle, LED shows value and blinks the slot number
+- Virtual MIDI source "Knurl"
